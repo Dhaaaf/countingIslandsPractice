@@ -50,20 +50,20 @@ function countIslands(matrix) {
   // Create a visited set to store visited nodes
   const visited = new Set()
   // Initialize count to 0
-  const count = 0
+  let count = 0
   // Iterate through all indices in matrix
   for (let row = 0; row < matrix.length; row++) {
     for (let col = 0; col < matrix[row].length; col++) {
       // If an index contains a 1 and has not been visited,
       let curr = [row, col]
-      if (matrix[row][col] === 1 && !visited.has(curr).toString()) {
+      if (matrix[row][col] === 1 && !visited.has([row, col].toString())) {
         // increment island count and start traversing neighbors
         // DO THE THING (increment island count by 1)
         count++
         // Initialize a stack with current index
-        let stack = [curr]
+        let stack = [[row, col]]
         // Add stringified version of current index to the visited set
-        visited.add(curr.toString())
+        visited.add([row, col].toString())
         // While stack contains elements
         while (stack.length) {
           // Pop element from stack
@@ -73,17 +73,16 @@ function countIslands(matrix) {
           // Iterate over neigbors
           neighbors.forEach(neighbor => {
             // If neighbor has not been visited
-            if (!visited.has(neighbor.toString()))
+            if (!visited.has(neighbor.toString())) {
               // Add neighbor to stack
               stack.push(neighbor)
-            // Mark neighbor as visited
-            visited.add(neighbor.toString())
+              // Mark neighbor as visited
+              visited.add(neighbor.toString())
+            }
           })
         }
       }
-
     }
-
   }
   // Return island count
   return count
