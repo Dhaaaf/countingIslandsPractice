@@ -1,37 +1,52 @@
 function getNeighbors(row, col, matrix) {
-  
+  let neighbors = []
   // Check top
+  let up = [row - 1, col]
+  if (row - 1 >= 0 && matrix[row - 1][col] === 1) neighbors.push(up)
   // Check top right
+  let topRight = [row - 1, col + 1]
+  if (row - 1 >= 0 && col + 1 <= matrix[row].length - 1 && matrix[row - 1][col + 1] === 1) neighbors.push(topRight)
   // Check right
+  let right = [row, col + 1]
+  if (col + 1 <= matrix[row].length - 1 && matrix[row][col + 1] === 1) neighbors.push(right)
   // Check bottom right
+  let bottomRight = [row + 1, col + 1]
+  if (row + 1 <= matrix.length - 1 && col + 1 <= matrix.length - 1 && matrix[row + 1][col + 1] === 1) neighbors.push(bottomRight)
   // Check bottom
+  let down = [row + 1, col]
+  if (row + 1 <= matrix.length - 1 && matrix[row + 1][col] === 1) neighbors.push(down)
   // Check bottom left
+  let bottomLeft = [row + 1, col - 1]
+  if (row + 1 <= matrix.length - 1 && col - 1 >= 0 && matrix[row + 1][col - 1] === 1) neighbors.push(bottomLeft)
   // Check left
+  let left = [row, col - 1]
+  if (col - 1 >= 0 && matrix[row][col - 1] === 1) neighbors.push(left)
   // Check top left
+  let topLeft = [row - 1, col - 1]
+  if (row - 1 >= 0 && col - 1 >= 0 && matrix[row - 1][col - 1] === 1) neighbors.push(topLeft)
   // Return neighbors
-  
-  // Your code here
+  return neighbors
 }
 
 function countIslands(matrix) {
-  
+
   // Create a visited set to store visited nodes
   // Initialize count to 0
   // Iterate through all indices in matrix
-    // If an index contains a 1 and has not been visited, 
-    // increment island count and start traversing neighbors
-      // DO THE THING (increment island count by 1)
-      // Initialize a stack with current index
-      // Add stringified version of current index to the visited set
-      // While stack contains elements
-        // Pop element from stack
-        // Get valid neighbors of current element
-        // Iterate over neigbors
-          // If neighbor has not been visited
-            // Add neighbor to stack
-            // Mark neighbor as visited
+  // If an index contains a 1 and has not been visited, 
+  // increment island count and start traversing neighbors
+  // DO THE THING (increment island count by 1)
+  // Initialize a stack with current index
+  // Add stringified version of current index to the visited set
+  // While stack contains elements
+  // Pop element from stack
+  // Get valid neighbors of current element
+  // Iterate over neigbors
+  // If neighbor has not been visited
+  // Add neighbor to stack
+  // Mark neighbor as visited
   // Return island count
-  
+
   // Your code here
 }
 
