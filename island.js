@@ -1,31 +1,48 @@
 function getNeighbors(row, col, matrix) {
-  let neighbors = []
-  // Check top
-  let up = [row - 1, col]
-  if (row - 1 >= 0 && matrix[row - 1][col] === 1) neighbors.push(up)
-  // Check top right
-  let topRight = [row - 1, col + 1]
-  if (row - 1 >= 0 && col + 1 <= matrix[row].length - 1 && matrix[row - 1][col + 1] === 1) neighbors.push(topRight)
-  // Check right
-  let right = [row, col + 1]
-  if (col + 1 <= matrix[row].length - 1 && matrix[row][col + 1] === 1) neighbors.push(right)
-  // Check bottom right
-  let bottomRight = [row + 1, col + 1]
-  if (row + 1 <= matrix.length - 1 && col + 1 <= matrix.length - 1 && matrix[row + 1][col + 1] === 1) neighbors.push(bottomRight)
-  // Check bottom
-  let down = [row + 1, col]
-  if (row + 1 <= matrix.length - 1 && matrix[row + 1][col] === 1) neighbors.push(down)
-  // Check bottom left
-  let bottomLeft = [row + 1, col - 1]
-  if (row + 1 <= matrix.length - 1 && col - 1 >= 0 && matrix[row + 1][col - 1] === 1) neighbors.push(bottomLeft)
-  // Check left
-  let left = [row, col - 1]
-  if (col - 1 >= 0 && matrix[row][col - 1] === 1) neighbors.push(left)
-  // Check top left
-  let topLeft = [row - 1, col - 1]
-  if (row - 1 >= 0 && col - 1 >= 0 && matrix[row - 1][col - 1] === 1) neighbors.push(topLeft)
-  // Return neighbors
-  return neighbors
+  // let neighbors = []
+  // // Check top
+  // let up = [row - 1, col]
+  // if (row - 1 >= 0 && matrix[row - 1][col] === 1) neighbors.push(up)
+  // // Check top right
+  // let topRight = [row - 1, col + 1]
+  // if (row - 1 >= 0 && col + 1 <= matrix[row].length - 1 && matrix[row - 1][col + 1] === 1) neighbors.push(topRight)
+  // // Check right
+  // let right = [row, col + 1]
+  // if (col + 1 <= matrix[row].length - 1 && matrix[row][col + 1] === 1) neighbors.push(right)
+  // // Check bottom right
+  // let bottomRight = [row + 1, col + 1]
+  // if (row + 1 <= matrix.length - 1 && col + 1 <= matrix.length - 1 && matrix[row + 1][col + 1] === 1) neighbors.push(bottomRight)
+  // // Check bottom
+  // let down = [row + 1, col]
+  // if (row + 1 <= matrix.length - 1 && matrix[row + 1][col] === 1) neighbors.push(down)
+  // // Check bottom left
+  // let bottomLeft = [row + 1, col - 1]
+  // if (row + 1 <= matrix.length - 1 && col - 1 >= 0 && matrix[row + 1][col - 1] === 1) neighbors.push(bottomLeft)
+  // // Check left
+  // let left = [row, col - 1]
+  // if (col - 1 >= 0 && matrix[row][col - 1] === 1) neighbors.push(left)
+  // // Check top left
+  // let topLeft = [row - 1, col - 1]
+  // if (row - 1 >= 0 && col - 1 >= 0 && matrix[row - 1][col - 1] === 1) neighbors.push(topLeft)
+  // // Return neighbors
+  // return neighbors
+
+  const neighbors = [
+    //top //bottom //left //right //top right //top left //bottom right //bottom left
+    [row - 1, col],
+    [row + 1, col],
+    [row, col - 1],
+    [row, col + 1],
+    [row - 1, col + 1],
+    [row - 1, col - 1],
+    [row + 1, col + 1],
+    [row + 1, col - 1],
+  ]
+  const validNeighbors = neighbors.filter((currNode) => {
+    const [row, col] = currNode
+    return matrix[row] && matrix[row][col] === 1
+  })
+  return validNeighbors
 }
 
 function countIslands(matrix) {
